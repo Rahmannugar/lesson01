@@ -1,0 +1,11 @@
+"use strict";
+let myName;
+let age;
+let isLoading;
+let what;
+myName = "Nugar";
+age = 21;
+isLoading = true;
+what = 33;
+what = "what";
+console.log(what);
