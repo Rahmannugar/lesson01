@@ -59,21 +59,129 @@ const exampleObj = {
 
 exampleObj.prop2 = false;
 
-type Guitarist = {
+// type Guitarist = {
+//   name: string;
+//   active?: boolean;
+//   albums: (string | number)[];
+// };
+
+interface Guitarist {
   name: string;
-  active: boolean;
+  active?: boolean;
   albums: (string | number)[];
-};
+}
+
 let first: Guitarist = {
   name: "Rahman Nugar",
-  active: false,
+  active: true,
   albums: [2003, "2003"],
 };
 
 let second: Guitarist = {
-  name: "Rahman Nugar",
-  active: false,
+  name: "John Doe",
   albums: [2003, "2003"],
 };
 
 first = second;
+
+const greetGuitarist = (guitarist: Guitarist) => {
+  return `Hello ${guitarist.name?.toUpperCase()}!`;
+};
+
+console.log(greetGuitarist(first));
+
+//enums
+enum Grade {
+  U = 1,
+  D,
+  C,
+  B,
+  A,
+}
+console.log(Grade.U);
+
+//Type Aliases
+type stringorNumber = string | number;
+
+type stringOrNumberArray = (string | number)[];
+
+type Developer = {
+  name: string;
+  active?: boolean;
+  albums: stringOrNumberArray;
+};
+
+type UserId = stringorNumber;
+
+//functions
+const add = (a: number, b: number) => {
+  return a + b;
+};
+
+const logMsg = (message: any) => {
+  console.log(message);
+};
+logMsg("Hello!");
+logMsg(add(3, 3));
+
+let subtract = function (c: number, d: number): number {
+  return c - d;
+};
+
+type mathFunction = (a: number, b: number) => number;
+
+let multiply: mathFunction = function (c, d) {
+  return c * d;
+};
+
+logMsg(multiply(3, 3));
+
+//optional parameters
+const addAll = (a: number, b: number, c?: number): number => {
+  if (typeof c !== "undefined") {
+    return a + b + c;
+  }
+  return a + b;
+};
+
+//default param value
+const sumAll = (a: number = 1, b: number = 2, c: number = 3): number => {
+  return a + b + c;
+};
+
+logMsg(addAll(1, 2, 3));
+logMsg(addAll(1, 2));
+logMsg(sumAll(1, 2, 3));
+logMsg(sumAll());
+
+//Rest parameters
+const total = (...nums: number[]): number => {
+  return nums.reduce((prev, curr) => prev + curr);
+};
+
+logMsg(total(10, 20, 30, 40));
+
+const createError = (errMsg: string) => {
+  throw new Error(errMsg);
+};
+
+const infiniteCase = () => {
+  let i: number = 1;
+  while (true) {
+    i++;
+    if (i > 33) break;
+  }
+};
+
+const isNumber = (value: any): boolean => {
+  return typeof value === "number" ? true : false;
+};
+
+const numberOrString = (value: number | string): string => {
+  if (typeof value === "string") return "string";
+  // if (typeof value === "number") return "number";
+  if (isNumber(value)) return "number";
+  return createError("This should never happen");
+};
+
+logMsg(numberOrString("Hello"));
