@@ -215,5 +215,7 @@ const image = document.querySelector("img") as HTMLImageElement;
 const myImage = document.getElementById("img") as HTMLImageElement;
 const nextImage = <HTMLImageElement>document.getElementById("img");
 
-image.src;
-myImage.src;
+//image.src;
+//myImage.src;
+
+//classes

@@ -142,5 +142,6 @@ logMsg(addOrConcat(1, 2, "concat"));
 const image = document.querySelector("img");
 const myImage = document.getElementById("img");
 const nextImage = document.getElementById("img");
-image.src;
-myImage.src;
+//image.src;
+//myImage.src;
+//classes
