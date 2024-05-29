@@ -185,3 +185,35 @@ const numberOrString = (value: number | string): string => {
 };
 
 logMsg(numberOrString("Hello"));
+
+//Type Assertions - TypeScript casting
+
+type One = string;
+type Two = string | number;
+type Three = "hello";
+
+//convert to more or less specific
+let a: One = "Hello";
+let b = a as Two; //less specific
+let c = a as Three; //more specific
+
+let d = <One>"world";
+let e = <string | number>"world";
+
+const addOrConcat = (
+  a: number,
+  b: number,
+  c: "add" | "concat"
+): number | string => {
+  if (c === "add") return a + b;
+  return "" + a + b;
+};
+logMsg(addOrConcat(1, 2, "concat"));
+
+//The DOM
+const image = document.querySelector("img") as HTMLImageElement;
+const myImage = document.getElementById("img") as HTMLImageElement;
+const nextImage = <HTMLImageElement>document.getElementById("img");
+
+image.src;
+myImage.src;

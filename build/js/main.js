@@ -126,3 +126,21 @@ const numberOrString = (value) => {
     return createError("This should never happen");
 };
 logMsg(numberOrString("Hello"));
+//convert to more or less specific
+let a = "Hello";
+let b = a; //less specific
+let c = a; //more specific
+let d = "world";
+let e = "world";
+const addOrConcat = (a, b, c) => {
+    if (c === "add")
+        return a + b;
+    return "" + a + b;
+};
+logMsg(addOrConcat(1, 2, "concat"));
+//The DOM
+const image = document.querySelector("img");
+const myImage = document.getElementById("img");
+const nextImage = document.getElementById("img");
+image.src;
+myImage.src;
