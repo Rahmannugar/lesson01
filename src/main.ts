@@ -219,3 +219,93 @@ const nextImage = <HTMLImageElement>document.getElementById("img");
 //myImage.src;
 
 //classes
+class Coder {
+  secondLang!: string;
+
+  constructor(
+    public readonly name: string,
+    public music: string,
+    private age: number,
+    protected lang: string = "TypeScript"
+  ) {
+    this.name = name;
+    this.music = music;
+    this.age = age;
+    this.lang = lang;
+  }
+  public getAge() {
+    return `Hello, I'm ${this.age}`;
+  }
+  public getLang() {
+    return `Hello, I write ${this.lang}`;
+  }
+}
+
+const thirtythree = new Coder("Rahman Nugar", "Afrobeats", 21);
+
+logMsg(thirtythree.getAge());
+logMsg(thirtythree.getLang());
+
+class webDev extends Coder {
+  constructor(
+    public computer: string,
+    name: string,
+    music: string,
+    age: number
+  ) {
+    super(name, music, age);
+    this.computer = computer;
+  }
+  public getLang() {
+    return `I write ${this.lang}`;
+  }
+}
+
+const twothird = new webDev("HP 830 g5", "John Doe", "Hip-pop", 21);
+
+logMsg(twothird.getLang());
+
+interface Musician {
+  name: string;
+  genre: string;
+  play(action: string): string;
+}
+
+class Rapper implements Musician {
+  name: string;
+  genre: string;
+
+  constructor(name: string, genre: string) {
+    this.name = name;
+    this.genre = genre;
+  }
+  play(action: string) {
+    return `${this.name} ${action} ${this.genre}`;
+  }
+}
+
+const records33 = new Rapper("Rahman Nugar", "rap");
+logMsg(records33.play("does"));
+
+//
+
+class Peeps {
+  static count: number = 0;
+  static getCount(): number {
+    return Peeps.count;
+  }
+
+  public id: number;
+
+  constructor(public name: string) {
+    this.name = name;
+    this.id = ++Peeps.count;
+  }
+}
+
+const steve = new Peeps("Steve");
+const chris = new Peeps("Chris");
+
+logMsg(steve.id);
+logMsg(chris.id);
+logMsg(Peeps.count);

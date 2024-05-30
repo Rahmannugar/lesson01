@@ -145,3 +145,64 @@ const nextImage = document.getElementById("img");
 //image.src;
 //myImage.src;
 //classes
+class Coder {
+    constructor(name, music, age, lang = "TypeScript") {
+        this.name = name;
+        this.music = music;
+        this.age = age;
+        this.lang = lang;
+        this.name = name;
+        this.music = music;
+        this.age = age;
+        this.lang = lang;
+    }
+    getAge() {
+        return `Hello, I'm ${this.age}`;
+    }
+    getLang() {
+        return `Hello, I write ${this.lang}`;
+    }
+}
+const thirtythree = new Coder("Rahman Nugar", "Afrobeats", 21);
+logMsg(thirtythree.getAge());
+logMsg(thirtythree.getLang());
+class webDev extends Coder {
+    constructor(computer, name, music, age) {
+        super(name, music, age);
+        this.computer = computer;
+        this.computer = computer;
+    }
+    getLang() {
+        return `I write ${this.lang}`;
+    }
+}
+const twothird = new webDev("HP 830 g5", "John Doe", "Hip-pop", 21);
+logMsg(twothird.getLang());
+class Rapper {
+    constructor(name, genre) {
+        this.name = name;
+        this.genre = genre;
+    }
+    play(action) {
+        return `${this.name} ${action} ${this.genre}`;
+    }
+}
+const records33 = new Rapper("Rahman Nugar", "rap");
+logMsg(records33.play("does"));
+//
+class Peeps {
+    static getCount() {
+        return Peeps.count;
+    }
+    constructor(name) {
+        this.name = name;
+        this.name = name;
+        this.id = ++Peeps.count;
+    }
+}
+Peeps.count = 0;
+const steve = new Peeps("Steve");
+const chris = new Peeps("Chris");
+logMsg(steve.id);
+logMsg(chris.id);
+logMsg(Peeps.count);
