@@ -114,7 +114,7 @@ type Developer = {
 type UserId = stringorNumber;
 
 //functions
-const add = (a: number, b: number) => {
+const add = (a: number, b: number): number => {
   return a + b;
 };
 
@@ -184,7 +184,7 @@ const numberOrString = (value: number | string): string => {
   return createError("This should never happen");
 };
 
-logMsg(numberOrString("Hello"));
+logMsg(numberOrString("Hello here"));
 
 //Type Assertions - TypeScript casting
 
@@ -309,3 +309,150 @@ const chris = new Peeps("Chris");
 logMsg(steve.id);
 logMsg(chris.id);
 logMsg(Peeps.count);
+
+//index signature
+interface TransactionObj {
+  [index: string]: number;
+  Pizza: number;
+  Books: number;
+  Job: number;
+  Food?: any;
+}
+
+const presentTransaction: TransactionObj = {
+  Pizza: -10,
+  Books: -5,
+  Job: 50,
+};
+
+logMsg(presentTransaction.Pizza);
+
+const netBalance = (transactions: TransactionObj): number => {
+  let total = 0;
+  for (const transaction in transactions) {
+    total += transactions[transaction];
+  }
+  return total;
+};
+
+logMsg(netBalance(presentTransaction));
+
+interface student {
+  [key: string]: string | number | number[] | undefined;
+  name: string;
+  GPA: number;
+  classes?: number[];
+}
+
+const studentObj: student = {
+  name: "Adenuga Abdulrahmon",
+  GPA: 4.3,
+  classes: [100, 200, 300, 400],
+};
+
+logMsg(studentObj.test);
+
+for (const key in studentObj) {
+  logMsg(`${key}: ${studentObj[key]}`);
+}
+
+const echo = <T>(arg: T): T => arg;
+
+const isObj = <T>(arg: T): boolean => {
+  return typeof arg === "object" && !Array.isArray(arg) && arg !== null;
+};
+
+logMsg(isObj(true));
+
+interface HasID {
+  id: number;
+}
+const processUser = <T extends HasID>(user: T): T => {
+  //process user with logic here
+  return user;
+};
+logMsg(processUser({ id: 1, name: "Nugar" }));
+
+const getUsersProperty = <T extends HasID, K extends keyof T>(
+  users: T[],
+  key: K
+): T[K][] => {
+  return users.map((user) => user[key]);
+};
+
+const usersArray = [
+  {
+    id: 1,
+    name: "Leanne Graham",
+    username: "Bret",
+    email: "Sincere@april.biz",
+    address: {
+      street: "Kulas Light",
+      suite: "Apt. 556",
+      city: "Gwenborough",
+      zipcode: "92998-3874",
+      geo: {
+        lat: "-37.3159",
+        lng: "81.1496",
+      },
+    },
+    phone: "1-770-736-8031 x56442",
+    website: "hildegard.org",
+    company: {
+      name: "Romaguera-Crona",
+      catchPhrase: "Multi-layered client-server neural-net",
+      bs: "harness real-time e-markets",
+    },
+  },
+  {
+    id: 2,
+    name: "Ervin Howell",
+    username: "Antonette",
+    email: "Shanna@melissa.tv",
+    address: {
+      street: "Victor Plains",
+      suite: "Suite 879",
+      city: "Wisokyburgh",
+      zipcode: "90566-7771",
+      geo: {
+        lat: "-43.9509",
+        lng: "-34.4618",
+      },
+    },
+    phone: "010-692-6593 x09125",
+    website: "anastasia.net",
+    company: {
+      name: "Deckow-Crist",
+      catchPhrase: "Proactive didactic contingency",
+      bs: "synergize scalable supply-chains",
+    },
+  },
+  {
+    id: 3,
+    name: "Clementine Bauch",
+    username: "Samantha",
+    email: "Nathan@yesenia.net",
+    address: {
+      street: "Douglas Extension",
+      suite: "Suite 847",
+      city: "McKenziehaven",
+      zipcode: "59590-4157",
+      geo: {
+        lat: "-68.6102",
+        lng: "-47.0653",
+      },
+    },
+    phone: "1-463-123-4447",
+    website: "ramiro.info",
+    company: {
+      name: "Romaguera-Jacobson",
+      catchPhrase: "Face to face bifurcated interface",
+      bs: "e-enable strategic applications",
+    },
+  },
+];
+
+logMsg(getUsersProperty(usersArray, "email"));
+logMsg(getUsersProperty(usersArray, "username"));
+
+// class StateObject
