@@ -501,3 +501,69 @@ const assign1: Assignment = {
 
 logMsg(updateAssignment(assign1, { grade: 99 }));
 const assignGrade: Assignment = updateAssignment(assign1, { grade: 97 });
+
+//Required and Readonly
+const recordAssignment = (assign: Required<Assignment>): Assignment => {
+  //send to DB
+  return assign;
+};
+
+const assignVerified: Readonly<Assignment> = { ...assignGrade, verified: true };
+
+recordAssignment({ ...assignGrade, verified: true });
+
+//Record
+const hexColorMap: Record<string, string> = {
+  red: "FF0000",
+  green: "00FF00",
+  blue: "0000FF",
+};
+
+type Students = "Sara" | "Kelly";
+type LetterGrades = "A" | "B" | "C" | "D" | " U";
+
+const finalGrades: Record<Students, LetterGrades> = {
+  Sara: "B",
+  Kelly: "A",
+};
+
+interface Grades {
+  assign1: number;
+  assign2: number;
+}
+
+const gradeData: Record<Students, Grades> = {
+  Sara: { assign1: 85, assign2: 93 },
+  Kelly: { assign1: 76, assign2: 15 },
+};
+
+//Pick and Omit
+type AssignResult = Pick<Assignment, "studentId" | "grade">;
+
+const score: AssignResult = {
+  studentId: "19/52HA020",
+  grade: 85,
+};
+
+//Promise
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+}
+
+const fetchUsers = async () => {
+  try {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const data: User[] = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("There has been a problem with your fetch operation:", error);
+  }
+};
+type FetchUSersReturnType = Awaited<ReturnType<typeof fetchUsers>>;
+fetchUsers();
