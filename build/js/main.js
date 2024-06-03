@@ -315,4 +315,30 @@ const usersArray = [
 ];
 logMsg(getUsersProperty(usersArray, "email"));
 logMsg(getUsersProperty(usersArray, "username"));
-// class StateObject
+class StateObject {
+    constructor(value) {
+        this.data = value;
+    }
+    get state() {
+        return this.data;
+    }
+    set state(value) {
+        this.data = value;
+    }
+}
+const store = new StateObject(78);
+logMsg(store.state);
+store.state = 12;
+const myState = new StateObject([15]);
+myState.state = ["Rahman", 21, true];
+logMsg(myState.state);
+const updateAssignment = (assign, propsToUpdate) => {
+    return Object.assign(Object.assign({}, assign), propsToUpdate);
+};
+const assign1 = {
+    studentId: "compsci123",
+    title: "Final year project",
+    grade: 0,
+};
+logMsg(updateAssignment(assign1, { grade: 99 }));
+const assignGrade = updateAssignment(assign1, { grade: 97 });

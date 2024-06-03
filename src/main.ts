@@ -455,4 +455,49 @@ const usersArray = [
 logMsg(getUsersProperty(usersArray, "email"));
 logMsg(getUsersProperty(usersArray, "username"));
 
-// class StateObject
+class StateObject<T> {
+  private data: T;
+  constructor(value: T) {
+    this.data = value;
+  }
+  get state(): T {
+    return this.data;
+  }
+  set state(value: T) {
+    this.data = value;
+  }
+}
+
+const store = new StateObject(78);
+logMsg(store.state);
+store.state = 12;
+
+const myState = new StateObject<(string | number | boolean)[]>([15]);
+myState.state = ["Rahman", 21, true];
+logMsg(myState.state);
+
+//utility types
+//partial
+
+interface Assignment {
+  studentId: string;
+  title: string;
+  grade: number;
+  verified?: boolean;
+}
+
+const updateAssignment = (
+  assign: Assignment,
+  propsToUpdate: Partial<Assignment>
+): Assignment => {
+  return { ...assign, ...propsToUpdate };
+};
+
+const assign1: Assignment = {
+  studentId: "compsci123",
+  title: "Final year project",
+  grade: 0,
+};
+
+logMsg(updateAssignment(assign1, { grade: 99 }));
+const assignGrade: Assignment = updateAssignment(assign1, { grade: 97 });
